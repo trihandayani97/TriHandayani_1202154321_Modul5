@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <ListPreference
+        android:key="@string/key_color"
+        android:title="Change Background Color"
+        android:entries="@array/color_name"
+        android:entryValues="@array/color_values"
+        android:defaultValue="#ff6d6d"
+        android:summary="Choose a background color" />
+
 </PreferenceScreen>
