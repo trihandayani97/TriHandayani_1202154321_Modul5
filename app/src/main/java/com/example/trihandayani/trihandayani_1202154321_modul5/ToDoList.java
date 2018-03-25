@@ -8,24 +8,35 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.LinkedList;
 
 public class ToDoList extends AppCompatActivity {
 
     SharedPreferences sp;
     RecyclerView rv;
-
+    RecyclerViewAdapter adapter;
+    LinkedList<ToDoItem> list = new LinkedList<>();
+    SQLiteHelper sqLiteHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
+
+        sqLiteHelper = new SQLiteHelper(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setRecyclerView();
 
         sp = PreferenceManager.getDefaultSharedPreferences(this); //set or store last selected from list preference
         String color = sp.getString(getString(R.string.key_color), "#ff6d6d"); //#ff6d6d is the default color
@@ -66,5 +77,31 @@ public class ToDoList extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setRecyclerView(){
+        list = sqLiteHelper.selectAll();
+        adapter = new RecyclerViewAdapter(this, list);
+        rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+
+        ItemTouchHelper.Callback callback = new SwipeHelper(adapter);
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(rv);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            Log.d("new name : ", data.getStringExtra("activity_name"));
+            Log.d("new desc : ", data.getStringExtra("desc"));
+            Log.d("new priority : ", data.getStringExtra("priority"));
+            sqLiteHelper.saveData(new ToDoItem(data.getStringExtra("activity_name"),
+                    data.getStringExtra("desc"), data.getStringExtra("priority")));
+        }
+
+        setRecyclerView();
+        adapter.notifyDataSetChanged();
     }
 }
