@@ -1,6 +1,7 @@
 package com.example.trihandayani.trihandayani_1202154321_modul5;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,20 +16,23 @@ import java.util.LinkedList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
 
+
     private LinkedList<ToDoItem> list;
     private LayoutInflater inflater;
 
-    public RecyclerViewAdapter(Context context, LinkedList<ToDoItem> list) {
+    public RecyclerViewAdapter(@NonNull Context context, LinkedList<ToDoItem> list) {
         inflater = LayoutInflater.from(context);
         this.list = list;
     }
 
+    @NonNull
     @Override
-    public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = inflater.inflate(R.layout.recycler_layout, parent, false);
         return new RecyclerViewHolder(itemView, this);
     }
 
+    @NonNull
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
 
@@ -48,7 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView activityNameView, descView, priorityView;
         RecyclerViewAdapter adapter;
 
-        public RecyclerViewHolder(View itemView, RecyclerViewAdapter adapter) {
+        public RecyclerViewHolder(@NonNull View itemView, RecyclerViewAdapter adapter) {
             super(itemView);
             activityNameView = (TextView) itemView.findViewById(R.id.editText_activity_name);
             descView = (TextView) itemView.findViewById(R.id.editText_desc);

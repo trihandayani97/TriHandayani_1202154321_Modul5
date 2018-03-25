@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import java.util.LinkedList;
 
@@ -41,7 +41,7 @@ public class ToDoList extends AppCompatActivity {
         sp = PreferenceManager.getDefaultSharedPreferences(this); //set or store last selected from list preference
         String color = sp.getString(getString(R.string.key_color), "#ff6d6d"); //#ff6d6d is the default color
 
-        rv = (RecyclerView) findViewById(R.id.recyclerViewMain); //background color of recycler view layout that need to be changed
+        //rv = (RecyclerView) findViewById(R.id.recyclerViewMain); //background color of recycler view layout that need to be changed
         rv.setBackgroundColor(Color.parseColor(color)); //set the color to layout
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add);
@@ -81,6 +81,7 @@ public class ToDoList extends AppCompatActivity {
 
     public void setRecyclerView(){
         list = sqLiteHelper.selectAll();
+        rv = (RecyclerView) findViewById(R.id.recyclerViewMain);
         adapter = new RecyclerViewAdapter(this, list);
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(this));
