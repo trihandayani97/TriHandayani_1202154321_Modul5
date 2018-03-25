@@ -19,6 +19,7 @@ public class ToDoList extends AppCompatActivity {
     SharedPreferences sp;
     RecyclerView rv;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

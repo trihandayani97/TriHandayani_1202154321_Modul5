@@ -7,5 +7,82 @@
     tools:context="com.example.trihandayani.trihandayani_1202154321_modul5.AddToDoList">
 
 
+    <TextView
+        android:id="@+id/textView_activity_name"
+        android:layout_width="130sp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="20dp"
+        android:paddingTop="10dp"
+        android:text="@string/activity_name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView_desc"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:layout_alignStart="@+id/textView_activity_name"
+        android:layout_below="@+id/textView_activity_name"
+        android:layout_marginTop="25dp"
+        android:paddingTop="10dp"
+        android:text="@string/description"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView_priority"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:layout_alignStart="@+id/textView_desc"
+        android:layout_below="@+id/textView_desc"
+        android:layout_marginTop="25dp"
+        android:paddingTop="10dp"
+        android:text="@string/priority"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editText_activity_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textView_activity_name"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColorHighlight="@color/colorAccent"/>
+
+    <EditText
+        android:id="@+id/editText_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textView_desc"
+        android:ems="10"
+        android:inputType="text"
+        android:textColorHighlight="@color/colorAccent"/>
+
+    <EditText
+        android:id="@+id/editText_priority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editText_desc"
+        android:layout_alignTop="@+id/textView_priority"
+        android:ems="10"
+        android:inputType="number"
+        android:textColorHighlight="@color/colorAccent"/>
+
+    <Button
+        android:id="@+id/button_add"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btn_add"
+        android:textSize="18sp"/>
+
 
 </RelativeLayout>
